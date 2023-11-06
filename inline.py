@@ -28,7 +28,7 @@ def labs_inline(spec , sub):
 def variants_inline(spec, sub ,lab):
     builder = InlineKeyboardBuilder()
     for i in content.var(spec, sub , lab):
-        builder.button(text= i, callback_data= i)
+        builder.button(text= i, callback_data= str(i) + '$')
     back("!" , builder)
     builder.adjust(2)
     return builder
