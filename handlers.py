@@ -32,8 +32,11 @@ async def variant(call):
     config = SS(call.from_user.id)
     if not call.data.startswith('back'):
         config.lab = call.data[:-1]
-    await call.message.edit_text("Вибери варіант", parse_mode = ParseMode.HTML, reply_markup= inline.variants_inline(config.spec, config.sub, config.lab).as_markup())    
-
+    try:
+        await call.message.edit_text("Вибери варіант", parse_mode = ParseMode.HTML, reply_markup= inline.variants_inline(config.spec, config.sub, config.lab).as_markup())    
+    except Exception:
+        await call.message.delete()
+        await call.message.answer("Вибери варіант", parse_mode = ParseMode.HTML, reply_markup= inline.variants_inline(config.spec, config.sub, config.lab).as_markup())    
 @dp.callback_query(F.data.endswith('+'))
 async def start_back(call):
     await call.message.edit_text(f"Привіт <b>{call.from_user.full_name}</b>, вибери свою спеціальність", parse_mode=ParseMode.HTML, reply_markup= inline.spec_inline().as_markup())
@@ -46,8 +49,13 @@ async def start_user_activity(call):
     await call.message.edit_text(f"{config.sub}, номер лабораторної {config.lab}, {config.variant}")
         # Send the image with a caption (description)
     photo = FSInputFile(f"preview/{labs_converter[config.sub]}_lab_{config.lab}_variant_{config.variant[-1]}.png")
+    caption = "Це завдання обраної лабараторної роботи. Перед покупкою рекомендуємо перевірити чи вони співпадають із твоїми."
     await call.message.answer_photo(
         photo = photo,
-        caption="їбани"
+        caption=caption,
+        reply_markup = inline.confirm_lab().as_markup()
         )      
+     
+    # await call.message.edit_text(caption, reply_markup = inline.confirm_lab("!").as_markup())
+
       
