@@ -47,3 +47,17 @@ def confirm_lab():
     back("?", builder)
     builder.adjust(1)
     return builder
+
+def payment_step_2(): 
+    builder = InlineKeyboardBuilder()
+    meta_data = [
+        ('Зрозуміло.', 'payment_step_2'),
+    ]
+    for i in meta_data:
+        text = i[0]
+        callback_data = i[1]
+        builder.button(text=text, callback_data=callback_data) 
+    back("?", builder)
+    builder.adjust(1)
+    return builder
+
