@@ -33,5 +33,31 @@ def variants_inline(spec, sub ,lab):
     builder.adjust(2)
     return builder
 
-def back(step , builder):
+def back(step , builder,):
     builder.button(text= "Назад" , callback_data= "back" + step)
+    
+
+def confirm_lab():
+    builder = InlineKeyboardBuilder()
+    meta_data = [('Продовжити покупку', 'payment_step_1') ]
+    for i in meta_data:
+        text = i[0]
+        callback_data = i[1]
+        builder.button(text=text, callback_data=callback_data) 
+    back("?", builder)
+    builder.adjust(1)
+    return builder
+
+def payment_step_2(): 
+    builder = InlineKeyboardBuilder()
+    meta_data = [
+        ('Зрозуміло.', 'payment_step_2'),
+    ]
+    for i in meta_data:
+        text = i[0]
+        callback_data = i[1]
+        builder.button(text=text, callback_data=callback_data) 
+    back("?", builder)
+    builder.adjust(1)
+    return builder
+
