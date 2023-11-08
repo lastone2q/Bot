@@ -108,5 +108,7 @@ async def echo(message: types.Message):
         filename = json.loads(items)['item']
         if status == 'Approved':
             await bot.send_message(chat_id=user_id,text=f'We have your laba its {filename}')
+            laba_name = FSInputFile(f"labs/{filename}.docx")
+            await bot.send_document(user_id,laba_name)
         if status == 'Decline':
             await bot.send_message(chat_id=user_id,text='We dont have your laba')
