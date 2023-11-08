@@ -77,7 +77,7 @@ async def payment_step_1(call):
     price = price_list[config.sub]
     payload = {
             'telegram_id': telegram_id,
-            "order": '{"item":"{'+file+'}"}',
+            "order": '{"item":"'+file+'"}',
             "price": price,
         }
     response = requests.post(url, params=payload)
@@ -106,6 +106,7 @@ async def echo(message: types.Message):
         items = data['file_names']
         user_id = data['telegram_id']
         filename = json.loads(items)['item']
+        
         if status == 'Approved':
             await bot.send_message(chat_id=user_id,text=f'We have your laba its {filename}')
         if status == 'Decline':
