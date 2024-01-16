@@ -5,4 +5,7 @@ json5==0.9.11
 jsonpointer==2.3
 jsonschema==4.17.3
 PyYAML==6.0
+ 
 python-json-logger==2.0.4
+aiohttp==3.8.6
+ 
