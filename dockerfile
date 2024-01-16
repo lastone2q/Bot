@@ -12,6 +12,11 @@ COPY . ./
 RUN pip install --upgrade pip
 RUN pip install -r req.txt  
  
+ 
 CMD ["python3", "main.py"]
 
 EXPOSE 8000
+ 
+
+CMD ["python3", "main.py"]
+ 

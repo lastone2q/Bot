@@ -1,5 +1,6 @@
 # Build docker container
 
+
      docker build -t labhub_bot .
      docker tag labhub_bot wixxxez/labhub_bot
      docker push  wixxxez/labhub_bot      
@@ -17,3 +18,4 @@
     docker pull wixxxez/labhub_bot
     docker tag wixxxez/labhub_bot  gcr.io/fcitlabhub-api/labhub_bot
     docker push gcr.io/fcitlabhub-api/labhub_bot
+
